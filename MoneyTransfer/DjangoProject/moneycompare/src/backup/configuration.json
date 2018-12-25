@@ -1,0 +1,21 @@
+{
+    "transferwise":
+    {
+        "hostname": "https://api.sandbox.transferwise.tech/v1/",
+        "token": "",
+        "endpoints":
+        {
+            "EXCHANGE-RATE": "rates",
+            "QUOTES": "quotes"
+        }
+    },
+    "westernunion":
+    {
+        "hostname": "",
+        "token": "",
+        "endpoints":
+        {
+            "EXCHANGE-RATE": ""
+        }
+    }
+}
