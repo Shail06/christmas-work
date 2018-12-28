@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>Howdy!</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}" />
         <!-- Latest compiled and minified CSS -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <!-- jQuery library -->
@@ -10,10 +12,11 @@
         <!-- Latest compiled JavaScript -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <body>
-        <div class="container">
-            <h1>Money Transfer Comparison</h1>
-            <hr>
+    <body class="header"> 
+        <div>
+            <h1 style="color: white;">Transfer Wisely</h1>
+        </div>
+        <div class="container bgdiv">
             <form class="needs-validation" action="{% url 'moneycompare:results' %}" method="post">
                 {% csrf_token %}
                 <div class="row">
@@ -47,11 +50,14 @@
                 {% for vendor, quote in quote_collection.items %}
                 <div class="col-sm-4 well">
                     <div>
-                        {% load static %}
-                        <img class="img-thumbnail" src="{% static 'images/'|add:vendor.logo %}" alt="{{ vendor.vendor_name }}" />
-                    </div>
-                    <div>
-                        <h3>{{ quote }}</h3>
+                        <table>
+                            <tr>
+                                <img class="img-thumbnail rounded" src="{% static 'images/'|add:vendor.logo %}" alt="{{ vendor.vendor_name }" height="200px" width="40%" />
+                            </tr>
+                            <tr>
+                                <h2>{{ quote|get_item:"target_currency" }} {{ quote|get_item:"converted_amount"}}</h2>
+                            </tr>
+                        </table>       
                     </div>
                 </div>
                 {% endfor %}

@@ -50,6 +50,7 @@ class QuoteParameter(models.Model):
 	input_amount = models.CharField(max_length=50)
 	remaining_attributes = models.CharField(max_length=400)
 	response_amount = models.CharField(max_length=50)
+	response_target_currency = models.CharField(max_length=50)
 
 	def __str__(self):
 		return "Params-"+str(self.vendor_name)

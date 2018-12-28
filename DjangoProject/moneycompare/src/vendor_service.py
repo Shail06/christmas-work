@@ -36,5 +36,8 @@ class VendorService:
         }
                    
         payload = ""    
+        display_response = {}
         response = self.api_client.send_request(payload, params)
-        return response[quote_param.response_amount]
+        display_response["converted_amount"] = response[quote_param.response_amount]
+        display_response["target_currency"] = response[quote_param.response_target_currency]
+        return display_response

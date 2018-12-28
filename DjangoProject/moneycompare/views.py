@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.template.defaulttags import register
 
 
 from .src.vendor_service import VendorService
@@ -23,10 +24,13 @@ def results(request):
 
 	for vendor in vendors_list:
 		vendor_object = VendorService(vendor.vendor_name)
-		temporary_quote = ""
 		quote_collection[vendor] = vendor_object.get_temporary_quote(source, target, sourceAmount)
+		
 	context['quote_collection']= quote_collection
 	context['currency_list'] = currency_list
 	return render(request, 'moneycompare/results.html', context)
 
 	
+@register.filter
+def get_item(dictionary, key):
+    return dictionary.get(key)
