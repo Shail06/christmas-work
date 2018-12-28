@@ -1,5 +1,6 @@
 import json
 from .api_module import APIClient
+
 class VendorService:
 
     def __init__(self, vendor_name):
@@ -28,12 +29,12 @@ class VendorService:
         quote_param = self.api_client.get_parameter_object("QUOTES")
         remaining_params = json.loads(quote_param.remaining_attributes)
         params = {
-        quote_param.source_currency: source,
-        quote_param.target_currency: target,
-        quote_param.source_amount:source_amount,
-        **remaining_params
+            quote_param.input_from: source,
+            quote_param.input_to: target,
+            quote_param.input_amount:source_amount,
+            **remaining_params
         }
                    
         payload = ""    
         response = self.api_client.send_request(payload, params)
-        return response['targetAmount']
+        return response[quote_param.response_amount]

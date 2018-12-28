@@ -45,10 +45,11 @@ class Endpoint(models.Model):
 
 class QuoteParameter(models.Model):
 	vendor_name = models.OneToOneField(Vendor, on_delete=models.CASCADE, primary_key=True,)
-	source_currency = models.CharField(max_length=50)
-	target_currency = models.CharField(max_length=50)
-	source_amount = models.CharField(max_length=50)
+	input_from = models.CharField(max_length=50)
+	input_to = models.CharField(max_length=50)
+	input_amount = models.CharField(max_length=50)
 	remaining_attributes = models.CharField(max_length=400)
+	response_amount = models.CharField(max_length=50)
 
 	def __str__(self):
 		return "Params-"+str(self.vendor_name)
